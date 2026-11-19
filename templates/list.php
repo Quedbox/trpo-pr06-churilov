@@ -8,6 +8,19 @@
 <body>
     <header><h1>Список заметок</h1></header>
     <main>
+        <section>
+            <h2>Новая заметка</h2>
+            <form method="post" action="/">
+                <input type="hidden" name="action" value="add_note">
+                <label for="title">Название</label>
+                <input id="title" name="title" value="<?= e($data['title']) ?>" required>
+                <button type="submit">Добавить</button>
+            </form>
+            <?php if ($data['error'] !== ''): ?>
+                <p role="alert"><?= e($data['error']) ?></p>
+            <?php endif; ?>
+        </section>
+        <h2>Заметки</h2>
         <?php if ($data['notes'] === []): ?>
             <p>Заметок пока нет.</p>
         <?php else: ?>
