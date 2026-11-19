@@ -1,2 +1,8 @@
 <?php
-echo '<!doctype html><html lang="ru"><meta charset="UTF-8"><title>Заметки</title><h1>Список заметок</h1></html>';
+
+require_once __DIR__ . '/../src/storage.php';
+require_once __DIR__ . '/../src/view.php';
+
+$notesPath = __DIR__ . '/../data/notes.json';
+$notes = loadJson($notesPath);
+render('list', ['notes' => $notes]);
