@@ -6,8 +6,29 @@
     <title>Список заметок</title>
 </head>
 <body>
-    <header><h1>Список заметок</h1></header>
+    <header>
+        <h1>Список заметок</h1>
+        <p>Пользователь: <strong><?= e($data['displayName']) ?></strong></p>
+        <form method="post" action="/">
+            <input type="hidden" name="action" value="set_name">
+            <label for="display_name">Выбрать имя</label>
+            <select id="display_name" name="display_name">
+                <?php foreach ($data['userNames'] as $name): ?>
+                    <option value="<?= e($name) ?>" <?= $name === $data['displayName'] ? 'selected' : '' ?>>
+                        <?= e($name) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <button type="submit">Сохранить имя</button>
+        </form>
+        <form method="post" action="/">
+            <button type="submit" name="action" value="clear_name">Сбросить имя</button>
+        </form>
+    </header>
     <main>
+        <?php if ($data['error'] !== ''): ?>
+            <p role="alert"><?= e($data['error']) ?></p>
+        <?php endif; ?>
         <section>
             <h2>Новая заметка</h2>
             <form method="post" action="/">
@@ -16,9 +37,6 @@
                 <input id="title" name="title" value="<?= e($data['title']) ?>" required>
                 <button type="submit">Добавить</button>
             </form>
-            <?php if ($data['error'] !== ''): ?>
-                <p role="alert"><?= e($data['error']) ?></p>
-            <?php endif; ?>
         </section>
         <h2>Заметки</h2>
         <?php if ($data['notes'] === []): ?>
