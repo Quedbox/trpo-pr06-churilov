@@ -1,0 +1,12 @@
+body {
+    max-width: 680px;
+    margin: 32px auto;
+    padding: 0 16px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+header, section { border-bottom: 1px solid #ddd; padding-bottom: 16px; }
+form { margin: 8px 0; }
+input, select, button { padding: 6px; font: inherit; }
+input { max-width: 100%; box-sizing: border-box; }
+[role="alert"] { color: #a00000; }

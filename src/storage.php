@@ -12,7 +12,7 @@ function loadJson(string $path): array
     }
 
     $data = json_decode($text, true, 512, JSON_THROW_ON_ERROR);
-    if (!is_array($data) || !array_is_list($data)) {
+    if (!str_starts_with(ltrim($text), '[') || !is_array($data) || !array_is_list($data)) {
         throw new RuntimeException('В файле ' . basename($path) . ' ожидается список записей.');
     }
 
